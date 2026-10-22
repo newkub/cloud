@@ -1,0 +1,256 @@
+/**
+ * Command Palette CSS - Smooth animations and transitions
+ */
+
+/* Overlay fade in/out */
+.command-palette-overlay {
+	transition: opacity 0.2s ease-in-out;
+	opacity: 0;
+}
+
+.command-palette-overlay.open {
+	opacity: 1;
+}
+
+/* Command palette slide in/out */
+.command-palette {
+	transition:
+		transform 0.2s ease-out,
+		opacity 0.2s ease-out;
+	transform: translateY(-10px);
+	opacity: 0;
+}
+
+.command-palette.open {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+/* Command item hover and selection */
+.command-item {
+	transition:
+		background-color 0.15s ease,
+		transform 0.1s ease;
+}
+
+.command-item:hover {
+	transform: translateX(4px);
+}
+
+.command-item.selected {
+	transition:
+		background-color 0.15s ease,
+		transform 0.1s ease;
+}
+
+/* Command list fade in */
+.command-list {
+	transition: opacity 0.15s ease-in-out;
+}
+
+/* Input focus transition */
+.command-palette-input {
+	transition:
+		border-color 0.2s ease,
+		box-shadow 0.2s ease;
+}
+
+.command-palette-input:focus {
+	transition:
+		border-color 0.2s ease,
+		box-shadow 0.2s ease;
+}
+
+/* Favorite button animation */
+.command-favorite-button {
+	transition:
+		transform 0.15s ease,
+		color 0.15s ease;
+}
+
+.command-favorite-button:hover {
+	transform: scale(1.1);
+}
+
+.command-favorite-button:active {
+	transform: scale(0.95);
+}
+
+/* Hotkey badge animation */
+.command-hotkey {
+	transition: opacity 0.15s ease;
+}
+
+/* Preview panel slide in */
+.command-preview-panel {
+	transition:
+		transform 0.2s ease-out,
+		opacity 0.2s ease-out;
+	transform: translateX(100%);
+	opacity: 0;
+}
+
+.command-preview-panel.open {
+	transform: translateX(0);
+	opacity: 1;
+}
+
+/* Skeleton loading animation */
+@keyframes skeleton-shimmer {
+	0% {
+		background-position: -200% 0;
+	}
+	100% {
+		background-position: 200% 0;
+	}
+}
+
+.skeleton {
+	animation: skeleton-shimmer 1.5s infinite linear;
+	background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+	background-size: 200% 100%;
+}
+
+/* Toast notification animation */
+.toast {
+	transition:
+		transform 0.3s ease,
+		opacity 0.3s ease;
+	transform: translateY(20px);
+	opacity: 0;
+}
+
+.toast.show {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.toast.hide {
+	transform: translateY(-20px);
+	opacity: 0;
+}
+
+/* Breadcrumb item animation */
+.breadcrumb-item {
+	transition: color 0.15s ease;
+}
+
+.breadcrumb-item:hover {
+	transition: color 0.15s ease;
+}
+
+/* Category header animation */
+.category-header {
+	transition: background-color 0.15s ease;
+}
+
+/* Search result item animation */
+@keyframes fade-in-up {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.command-item {
+	animation: fade-in-up 0.15s ease-out;
+}
+
+/* Stagger animation for list items */
+.command-item:nth-child(1) {
+	animation-delay: 0ms;
+}
+
+.command-item:nth-child(2) {
+	animation-delay: 25ms;
+}
+
+.command-item:nth-child(3) {
+	animation-delay: 50ms;
+}
+
+.command-item:nth-child(4) {
+	animation-delay: 75ms;
+}
+
+.command-item:nth-child(5) {
+	animation-delay: 100ms;
+}
+
+/* Responsive transitions */
+@media (max-width: 768px) {
+	.command-palette {
+		transition:
+			transform 0.2s ease-out,
+			opacity 0.2s ease-out;
+	}
+}
+
+/* Smooth scroll for command list */
+.command-list {
+	scroll-behavior: smooth;
+	transition: scroll-behavior 0.2s ease;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.loading-spinner {
+	animation: spin 1s linear infinite;
+	transition: opacity 0.2s ease;
+}
+
+/* Error state shake animation */
+@keyframes shake {
+	0%,
+	100% {
+		transform: translateX(0);
+	}
+	10%,
+	30%,
+	50%,
+	70%,
+	90% {
+		transform: translateX(-5px);
+	}
+	20%,
+	40%,
+	60%,
+	80% {
+		transform: translateX(5px);
+	}
+}
+
+.error-state {
+	animation: shake 0.5s ease-in-out;
+}
+
+/* Success checkmark animation */
+@keyframes checkmark {
+	0% {
+		transform: scale(0);
+		opacity: 0;
+	}
+	50% {
+		transform: scale(1.2);
+	}
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+.success-icon {
+	animation: checkmark 0.3s ease-out;
+}

@@ -1,0 +1,226 @@
+/**
+ * Solid UI design tokens
+ *
+ * Core token layer for non-color design tokens and semantic CSS aliases.
+ * Color HSL components are defined in theme.css and imported below.
+ */
+
+@import "./theme.css";
+
+:root {
+	/* Color primitives */
+	--su-white: #ffffff;
+	--su-black: #000000;
+	--su-slate-50: #f8fafc;
+	--su-slate-100: #f1f5f9;
+	--su-slate-200: #e2e8f0;
+	--su-slate-300: #cbd5e1;
+	--su-slate-400: #94a3b8;
+	--su-slate-500: #64748b;
+	--su-slate-600: #475569;
+	--su-slate-700: #334155;
+	--su-slate-800: #1e293b;
+	--su-slate-900: #0f172a;
+	--su-slate-950: #020617;
+	--su-red-500: #ef4444;
+	--su-red-600: #dc2626;
+	--su-red-400: #f87171;
+	--su-green-500: #22c55e;
+	--su-green-600: #16a34a;
+	--su-green-400: #4ade80;
+	--su-amber-500: #f59e0b;
+	--su-amber-600: #d97706;
+	--su-amber-400: #fbbf24;
+	--su-blue-500: #3b82f6;
+	--su-blue-600: #2563eb;
+	--su-blue-400: #60a5fa;
+	--su-sky-400: #38bdf8;
+	--su-sky-500: #0ea5e9;
+	--su-sky-950: #082f49;
+
+	/* Semantic color aliases */
+	--su-bg: hsl(var(--color-background));
+	--su-background: hsl(var(--color-background));
+	--su-surface: hsl(var(--color-surface));
+	--su-surface-elevated: hsl(var(--color-surface-elevated));
+	--su-foreground: hsl(var(--color-foreground));
+	--su-text: hsl(var(--color-foreground));
+	--su-text-muted: hsl(var(--color-muted-foreground));
+	--su-muted: hsl(var(--color-muted));
+	--su-muted-foreground: hsl(var(--color-muted-foreground));
+	--su-border: hsl(var(--color-border));
+	--su-border-hover: hsl(var(--color-border-hover));
+	--su-input: hsl(var(--color-input));
+	--su-ring: hsl(var(--color-ring));
+	--su-primary: hsl(var(--color-primary));
+	--su-primary-text: hsl(var(--color-primary-foreground));
+	--su-primary-foreground: hsl(var(--color-primary-foreground));
+	--su-secondary: hsl(var(--color-secondary));
+	--su-secondary-foreground: hsl(var(--color-secondary-foreground));
+	--su-accent: hsl(var(--color-accent));
+	--su-accent-foreground: hsl(var(--color-accent-foreground));
+	--su-destructive: hsl(var(--color-destructive));
+	--su-destructive-foreground: hsl(var(--color-destructive-foreground));
+	--su-success: hsl(var(--color-success));
+	--su-success-foreground: hsl(var(--color-success-foreground));
+	--su-warning: hsl(var(--color-warning));
+	--su-warning-foreground: hsl(var(--color-warning-foreground));
+	--su-info: hsl(var(--color-info));
+	--su-info-foreground: hsl(var(--color-info-foreground));
+
+	/* Radius */
+	--su-radius: 0.5rem;
+	--su-radius-sm: 0.25rem;
+	--su-radius-md: 0.5rem;
+	--su-radius-lg: 0.75rem;
+	--su-radius-xl: 1rem;
+	--su-radius-full: 9999px;
+
+	/* Spacing */
+	--su-space-0: 0;
+	--su-space-1: 0.25rem;
+	--su-space-2: 0.5rem;
+	--su-space-3: 0.75rem;
+	--su-space-4: 1rem;
+	--su-space-5: 1.25rem;
+	--su-space-6: 1.5rem;
+	--su-space-7: 1.75rem;
+	--su-space-8: 2rem;
+	--su-space-10: 2.5rem;
+	--su-space-12: 3rem;
+	--su-space-16: 4rem;
+
+	/* Shadows */
+	--su-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+	--su-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+	--su-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+	--su-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+	--su-shadow-glow: 0 0 0 2px var(--su-ring);
+
+	/* Typography — fluid scale: comfortable minimums on phones, growing
+	   naturally up to a capped maximum on wide screens. */
+	--su-font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	--su-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+	--su-text-2xs: clamp(0.6875rem, 0.64rem + 0.18vw, 0.75rem);
+	--su-text-xs: clamp(0.8125rem, 0.77rem + 0.2vw, 0.875rem);
+	--su-text-sm: clamp(0.9375rem, 0.9rem + 0.2vw, 1rem);
+	--su-text-base: clamp(1rem, 0.96rem + 0.22vw, 1.0625rem);
+	--su-text-lg: clamp(1.125rem, 1.08rem + 0.24vw, 1.1875rem);
+	--su-text-xl: clamp(1.25rem, 1.19rem + 0.3vw, 1.375rem);
+	--su-text-2xl: clamp(1.5rem, 1.4rem + 0.5vw, 1.75rem);
+	--su-text-3xl: clamp(1.875rem, 1.71rem + 0.83vw, 2.25rem);
+	--su-text-4xl: clamp(2.25rem, 2rem + 1.25vw, 3rem);
+
+	/* Line heights */
+	--su-leading-none: 1;
+	--su-leading-tight: 1.25;
+	--su-leading-normal: 1.5;
+	--su-leading-relaxed: 1.75;
+
+	/* Z-index */
+	--su-z-base: 0;
+	--su-z-dropdown: 10;
+	--su-z-sticky: 20;
+	--su-z-fixed: 30;
+	--su-z-modal-backdrop: 40;
+	--su-z-modal: 50;
+	--su-z-popover: 60;
+	--su-z-tooltip: 70;
+	--su-z-toast: 80;
+
+	/* Motion */
+	--su-transition-fast: 100ms ease;
+	--su-transition-normal: 150ms ease;
+	--su-transition-slow: 250ms ease;
+}
+
+@keyframes su-fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes su-zoom-in {
+	from {
+		opacity: 0;
+		transform: scale(0.95);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+@keyframes su-slide-up {
+	from {
+		opacity: 0;
+		transform: translateY(1rem);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes su-marquee {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-50%);
+	}
+}
+
+html[data-theme="dark"],
+.dark {
+	/* Shadows in dark mode are slightly stronger for depth */
+	--su-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+	--su-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+	--su-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.35), 0 4px 6px -4px rgba(0, 0, 0, 0.35);
+	--su-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-family: var(--su-font-sans);
+	color: var(--su-foreground);
+	background: var(--su-bg);
+	line-height: var(--su-leading-normal);
+}
+
+body {
+	margin: 0;
+}
+
+/* Default focus ring for interactive elements that don't style their own
+   (components using focus-visible:outline-none + ring opt out via the
+   :not() guard below). */
+:where(
+	a,
+	button,
+	input,
+	select,
+	textarea,
+	summary,
+	[tabindex="0"],
+	[role="button"],
+	[role="link"],
+	[role="slider"],
+	[role="tab"],
+	[role="checkbox"],
+	[role="radio"],
+	[role="switch"],
+	[role="menuitem"],
+	[role="option"],
+	[role="treeitem"]
+):focus-visible:not([class*="outline-none"]):not([class*="outline-0"]) {
+	outline: 2px solid var(--su-ring);
+	outline-offset: 2px;
+	border-radius: var(--su-radius-sm);
+}

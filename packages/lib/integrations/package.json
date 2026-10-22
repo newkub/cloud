@@ -1,0 +1,102 @@
+{
+	"name": "@wrikka/integrations",
+	"description": "Integration adapters for Wrikka (Stripe, GitHub, Supabase, Cloudflare)",
+	"version": "1.0.0",
+	"type": "module",
+	"files": [
+		"dist",
+		"README.md",
+		"./dist"
+	],
+	"module": "./dist/index.js",
+	"main": "./dist/index.cjs",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/index.d.ts",
+				"default": "./dist/index.js"
+			},
+			"require": {
+				"types": "./dist/index.d.cts",
+				"default": "./dist/index.cjs"
+			}
+		},
+		"./stripe": {
+			"types": "./src/modules/stripe/index.ts",
+			"import": "./src/modules/stripe/index.ts"
+		},
+		"./package.json": "./package.json"
+	},
+	"imports": {
+		"#shared": "./src/modules/stripe/shared/index.ts",
+		"#shared/*": [
+			"./src/modules/stripe/shared/*/index.ts",
+			"./src/modules/stripe/shared/*.ts"
+		],
+		"#modules/*": [
+			"./src/modules/stripe/modules/*/index.ts",
+			"./src/modules/stripe/modules/*.ts"
+		],
+		"#adapters": "./src/modules/stripe/adapters/index.ts",
+		"#adapters/*": [
+			"./src/modules/stripe/adapters/*/index.ts",
+			"./src/modules/stripe/adapters/*.ts"
+		],
+		"#presentation/*": [
+			"./src/modules/stripe/presentation/*/index.ts",
+			"./src/modules/stripe/presentation/*.ts"
+		]
+	},
+	"keywords": [
+		"integrations",
+		"stripe",
+		"github",
+		"supabase",
+		"cloudflare",
+		"bun",
+		"typescript"
+	],
+	"author": "Wrikka",
+	"license": "MIT",
+	"dependencies": {
+		"@stripe/stripe-js": "^9.16.0",
+		"drizzle-orm": "catalog:",
+		"pg": "^8.23.0",
+		"postgres": "^3.4.9",
+		"solid-js": "catalog:",
+		"@wrikka/solid-ui": "workspace:*",
+		"stripe": "^22.6.2"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "catalog:",
+		"@types/bun": "catalog:",
+		"@types/node": "catalog:",
+		"bunup": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	},
+	"scripts": {
+		"dev": "bun run src/index.ts",
+		"build": "bunup",
+		"build:watch": "bunup --watch",
+		"typecheck": "bunx tsc --noEmit -p tsconfig.json",
+		"typecheck:watch": "bunx tsc --noEmit --watch -p tsconfig.json",
+		"lint": "biome check",
+		"lint:fix": "biome check --write",
+		"format": "biome check --write",
+		"test": "vitest run --passWithNoTests",
+		"test:watch": "vitest",
+		"test:coverage": "vitest run --coverage",
+		"scan": "ast-grep scan",
+		"check": "bun run lint && bun run typecheck && bun run scan",
+		"verify": "bun run check && bun run test && bun run build",
+		"deps:analyze": "bunx depcheck",
+		"clean": "bunx rimraf node_modules dist"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/newkub/cloud",
+		"directory": "packages/lib/integrations"
+	}
+}

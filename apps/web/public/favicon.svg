@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+	<title>Wrikka Cloud</title>
+	<rect width="32" height="32" rx="8" fill="#0d1420" />
+	<path
+		d="M22.5 12.5a5 5 0 0 0-9.6-1.6A4.5 4.5 0 0 0 10 19.5h11.5a4.25 4.25 0 0 0 1-8.4l.-.6z"
+		fill="none"
+		stroke="#34d399"
+		stroke-width="2"
+		stroke-linejoin="round"
+	/>
+</svg>

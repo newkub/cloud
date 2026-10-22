@@ -1,0 +1,1 @@
+export { createAnalyticsPlugin } from "./plugin";

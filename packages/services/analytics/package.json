@@ -1,0 +1,30 @@
+{
+	"name": "@wrikka/analytics",
+	"private": true,
+	"type": "module",
+	"version": "0.1.0",
+	"description": "Analytics module for the Wrikka cloud platform",
+	"exports": {
+		".": "./index.ts"
+	},
+	"scripts": {
+		"typecheck": "bunx tsc --noEmit",
+		"lint": "biome check",
+		"lint:fix": "biome check --write",
+		"format": "biome check --write",
+		"test": "vitest run --passWithNoTests",
+		"scan": "bunx ast-grep scan",
+		"check": "bun run lint && bun run typecheck && bun run scan",
+		"verify": "bun run check && bun run test"
+	},
+	"dependencies": {
+		"@wrikka/solid-ui": "workspace:*",
+		"arktype": "catalog:",
+		"drizzle-orm": "catalog:",
+		"solid-js": "catalog:"
+	},
+	"devDependencies": {
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	}
+}

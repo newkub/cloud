@@ -3,7 +3,10 @@ dist/
 web/dist/
 .wrangler/
 .dev.vars
+.dev.vars.*
+!.dev.vars.example
 .bun-cache/
 *.tsbuildinfo
 .wrangler
 cache/
+*.log

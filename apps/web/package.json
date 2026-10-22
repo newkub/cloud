@@ -1,0 +1,36 @@
+{
+	"name": "@wrikka/cloud-web",
+	"private": true,
+	"type": "module",
+	"version": "0.1.0",
+	"description": "Wrikka cloud platform dashboard",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"typecheck": "bunx tsc --noEmit",
+		"lint": "biome check",
+		"lint:fix": "biome check --write",
+		"format": "biome check --write",
+		"test": "vitest run --passWithNoTests",
+		"scan": "ast-grep scan",
+		"check": "bun run lint && bun run typecheck && bun run scan",
+		"verify": "bun run check && bun run test && bun run build"
+	},
+	"dependencies": {
+		"@tanstack/solid-router": "catalog:",
+		"@wrikka/solid-ui": "workspace:*",
+		"arktype": "catalog:",
+		"drizzle-orm": "catalog:",
+		"solid-js": "catalog:"
+	},
+	"devDependencies": {
+		"@iconify-json/mdi": "^1.2.3",
+		"@tanstack/router-plugin": "^1.168.42",
+		"typescript": "catalog:",
+		"unocss": "catalog:",
+		"vite": "catalog:",
+		"vite-plugin-solid": "^2.11.14",
+		"vitest": "catalog:"
+	}
+}

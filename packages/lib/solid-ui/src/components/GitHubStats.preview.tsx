@@ -1,0 +1,8 @@
+/**
+ * Co-located preview — picked up automatically by renderPreview
+ * (site cards, docs canvas, sweeps and stories all render this).
+ */
+import type { JSX } from "solid-js";
+import { GitHubStats } from "./GitHubStats";
+
+export const preview = (): JSX.Element => <GitHubStats repo="wrikka/solid-ui" class="w-80 max-w-full" />;

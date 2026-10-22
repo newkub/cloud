@@ -1,0 +1,46 @@
+{
+	"name": "@wrikka/notification",
+	"description": "Notification infrastructure inspired by Novu",
+	"version": "0.1.0",
+	"type": "module",
+	"main": "./src/index.ts",
+	"types": "./src/index.ts",
+	"exports": {
+		".": "./src/index.ts",
+		"./sdk": "./src/sdk/index.ts",
+		"./mcp": "./src/adapters/mcp/index.ts"
+	},
+	"files": [
+		"src",
+		"README.md"
+	],
+	"dependencies": {
+		"@sinclair/typebox": "^0.34.52",
+		"elysia": "catalog:"
+	},
+	"devDependencies": {
+		"@types/bun": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	},
+	"scripts": {
+		"dev": "bun run src/index.ts",
+		"build": "bun build src/index.ts --outdir dist --target bun",
+		"typecheck": "bunx tsc --noEmit",
+		"lint": "biome check",
+		"lint:fix": "biome check --write",
+		"format": "biome check --write",
+		"test": "vitest run --passWithNoTests",
+		"scan": "ast-grep scan",
+		"check": "bun run lint && bun run typecheck && bun run scan",
+		"verify": "bun run check && bun run test && bun run build"
+	},
+	"keywords": [
+		"notification",
+		"elysia",
+		"bun",
+		"typescript",
+		"mcp",
+		"sdk"
+	]
+}

@@ -1,0 +1,27 @@
+$schema: 'https://moonrepo.dev/schemas/project.json'
+language: typescript
+id: 'sdk-notification'
+project:
+  name: '@wrikka/notification'
+  description: 'Notification infrastructure inspired by Novu'
+tasks:
+  dev:
+    command: 'bun run dev'
+  build:
+    command: 'bun run build'
+  typecheck:
+    command: 'bun run typecheck'
+  lint:
+    command: 'bun run lint'
+  lint-fix:
+    command: 'bun run lint:fix'
+  format:
+    command: 'bun run format'
+  test:
+    command: 'bun run test'
+  scan:
+    command: 'bun run scan'
+  check:
+    command: 'bun run check'
+  verify:
+    command: 'bun run verify'

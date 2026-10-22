@@ -1,0 +1,41 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"isolatedModules": true,
+		"strict": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"jsx": "preserve",
+		"jsxImportSource": "solid-js",
+		"types": ["bun", "node"],
+		"noEmit": true,
+		"paths": {
+			"#shared": ["./src/modules/stripe/shared/index.ts"],
+			"#shared/*": [
+				"./src/modules/stripe/shared/*/index.ts",
+				"./src/modules/stripe/shared/*.ts"
+			],
+			"#modules/*": [
+				"./src/modules/stripe/modules/*/index.ts",
+				"./src/modules/stripe/modules/*.ts"
+			],
+			"#adapters": ["./src/modules/stripe/adapters/index.ts"],
+			"#adapters/*": [
+				"./src/modules/stripe/adapters/*/index.ts",
+				"./src/modules/stripe/adapters/*.ts"
+			],
+			"#presentation/*": [
+				"./src/modules/stripe/presentation/*/index.ts",
+				"./src/modules/stripe/presentation/*.ts"
+			]
+		}
+	},
+	"include": ["src"],
+	"exclude": ["node_modules", "dist", "**/*.test.ts"]
+}

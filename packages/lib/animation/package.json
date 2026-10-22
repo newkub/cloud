@@ -1,0 +1,35 @@
+{
+	"name": "@wrikka/animation",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "Animation engine and SolidJS adapters for the Wrikka cloud platform",
+	"exports": {
+		".": "./src/index.ts",
+		"./solid": "./src/adapters/solid/index.ts",
+		"./transitions": "./src/modules/transitions/index.ts"
+	},
+	"scripts": {
+		"typecheck": "bunx tsc --noEmit"
+	},
+	"dependencies": {
+		"arktype": "catalog:"
+	},
+	"peerDependencies": {
+		"solid-js": "catalog:"
+	},
+	"peerDependenciesMeta": {
+		"solid-js": {
+			"optional": true
+		}
+	},
+	"devDependencies": {
+		"solid-js": "catalog:",
+		"typescript": "catalog:"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/newkub/cloud",
+		"directory": "packages/lib/animation"
+	}
+}

@@ -1,0 +1,159 @@
+/**
+ * Solid UI theme color components
+ *
+ * HSL color variables for UnoCSS theme colors.
+ * Import this file once at application root before component styles.
+ */
+
+:root {
+	/* Background/surface/muted */
+	--color-background: 210 40% 98%;
+	--color-foreground: 222 47% 11%;
+	--color-surface: 0 0% 100%;
+	--color-surface-elevated: 0 0% 100%;
+	--color-surface-foreground: 222 47% 11%;
+	--color-muted: 210 40% 96%;
+	--color-muted-foreground: 215 20% 42%;
+
+	/* Borders and focus */
+	--color-border: 214 32% 91%;
+	--color-border-hover: 215 20% 65%;
+	--color-input: 214 32% 91%;
+	--color-ring: 222 47% 11%;
+	--color-focus: 222 47% 11%;
+
+	/* Primary */
+	--color-primary: 222 47% 11%;
+	--color-primary-hover: 215 25% 27%;
+	--color-primary-active: 217 33% 17%;
+	--color-primary-foreground: 0 0% 100%;
+
+	/* Secondary */
+	--color-secondary: 210 40% 96%;
+	--color-secondary-hover: 214 32% 91%;
+	--color-secondary-active: 213 27% 84%;
+	--color-secondary-foreground: 222 47% 11%;
+
+	/* Accent */
+	--color-accent: 210 40% 96%;
+	--color-accent-hover: 214 32% 91%;
+	--color-accent-active: 213 27% 84%;
+	--color-accent-foreground: 222 47% 11%;
+
+	/* Semantic colors */
+	--color-destructive: 0 84% 60%;
+	--color-destructive-hover: 0 72% 51%;
+	--color-destructive-active: 0 62% 45%;
+	--color-destructive-foreground: 0 0% 100%;
+	--color-success: 142 71% 45%;
+	--color-success-foreground: 0 0% 100%;
+	--color-warning: 38 92% 50%;
+	--color-warning-foreground: 0 0% 100%;
+	--color-info: 217 91% 60%;
+	--color-info-foreground: 0 0% 100%;
+
+	/* Misc */
+	--color-overlay: 0 0% 0%;
+	--color-skeleton: 214 32% 91%;
+	--color-skeleton-shine: 210 40% 96%;
+}
+
+html[data-theme="dark"],
+.dark {
+	color-scheme: dark;
+
+	/* Background/surface/muted */
+	--color-background: 222 47% 11%;
+	--color-foreground: 210 40% 98%;
+	--color-surface: 217 33% 17%;
+	--color-surface-elevated: 215 25% 27%;
+	--color-surface-foreground: 210 40% 98%;
+	--color-muted: 215 25% 27%;
+	--color-muted-foreground: 215 20% 65%;
+
+	/* Borders and focus */
+	--color-border: 215 25% 27%;
+	--color-border-hover: 215 20% 42%;
+	--color-input: 215 25% 27%;
+	--color-ring: 200 98% 55%;
+	--color-focus: 200 98% 55%;
+
+	/* Primary */
+	--color-primary: 200 98% 55%;
+	--color-primary-hover: 199 95% 48%;
+	--color-primary-active: 199 95% 42%;
+	--color-primary-foreground: 222 47% 11%;
+
+	/* Secondary */
+	--color-secondary: 217 33% 17%;
+	--color-secondary-hover: 215 25% 27%;
+	--color-secondary-active: 215 25% 35%;
+	--color-secondary-foreground: 210 40% 98%;
+
+	/* Accent */
+	--color-accent: 217 33% 17%;
+	--color-accent-hover: 215 25% 27%;
+	--color-accent-active: 215 25% 35%;
+	--color-accent-foreground: 210 40% 98%;
+
+	/* Semantic colors */
+	--color-destructive: 0 91% 71%;
+	--color-destructive-hover: 0 84% 60%;
+	--color-destructive-active: 0 72% 51%;
+	--color-destructive-foreground: 222 47% 11%;
+	--color-success: 142 69% 58%;
+	--color-success-foreground: 222 47% 11%;
+	--color-warning: 45 93% 57%;
+	--color-warning-foreground: 222 47% 11%;
+	--color-info: 213 94% 68%;
+	--color-info-foreground: 222 47% 11%;
+
+	/* Misc */
+	--color-overlay: 0 0% 0%;
+	--color-skeleton: 215 25% 27%;
+	--color-skeleton-shine: 217 33% 17%;
+}
+
+/* Interactive affordances — pointer cursor on clickable controls, not-allowed on disabled. */
+button:not(:disabled),
+[role="button"]:not([aria-disabled="true"]),
+summary,
+select:not(:disabled),
+[role="tab"]:not([aria-disabled="true"]),
+[role="switch"]:not([aria-disabled="true"]),
+[role="option"]:not([aria-disabled="true"]),
+[role="combobox"]:not([aria-disabled="true"]),
+[role="menuitem"]:not([aria-disabled="true"]),
+[role="checkbox"]:not([aria-disabled="true"]),
+[role="radio"]:not([aria-disabled="true"]),
+input[type="checkbox"]:not(:disabled),
+input[type="radio"]:not(:disabled),
+input[type="range"]:not(:disabled),
+label[for] {
+	cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled="true"],
+input:disabled,
+select:disabled,
+textarea:disabled {
+	cursor: not-allowed;
+}
+
+/* Text legibility */
+::selection {
+	background-color: hsl(var(--color-primary) / 0.2);
+}
+
+/* Respect users who opt out of motion */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto;
+		transition-duration: 0.01ms;
+		animation-duration: 0.01ms;
+		animation-iteration-count: 1;
+	}
+}

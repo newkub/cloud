@@ -1,0 +1,78 @@
+{
+  "name": "@wrikka/cloud-ci",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "bun run build:web && wrangler deploy --dry-run --containers-rollout=none",
+    "build:web": "bunx --bun vite build --config web/vite.config.ts",
+    "dev": "bun run dev:worker",
+    "dev:web": "bunx --bun vite --config web/vite.config.ts",
+    "dev:worker": "wrangler dev --inspector-port 9234",
+    "dev:mock": "bun run web/mock-server.ts",
+    "deploy": "bun run build:web && wrangler deploy",
+    "lint": "oxlint",
+    "test": "vitest run --passWithNoTests",
+    "typecheck": "wrangler types --check --include-runtime false --strict-vars false --env-interface CloudflareBindings && tsc --noEmit",
+    "cf-typegen": "wrangler types --include-runtime false --strict-vars false --env-interface CloudflareBindings"
+  },
+  "dependencies": {
+    "@cloudflare/ci": "^0.1.0",
+    "@cloudflare/sandbox": "0.12.1",
+    "@cloudflare/think": "0.17.0",
+    "@orpc/client": "^1.15.0",
+    "@orpc/server": "^1.15.0",
+    "@tanstack/solid-query": "^5.102.8",
+    "@tanstack/solid-router": "^1.170.31",
+    "agents": "0.22.0",
+    "ai": "7.0.93",
+    "hono": "^4.10.3",
+    "solid-js": "^1.9.15",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260730.1",
+    "@iconify-json/mdi": "^1.2.3",
+    "@total-typescript/shoehorn": "^0.1.2",
+    "@types/node": "26.4.1",
+    "oxlint": "^1.81.0",
+    "typescript": "7.0.2",
+    "unocss": "^66.10.0",
+    "vite": "^8.2.2",
+    "vite-plugin-solid": "^2.11.14",
+    "vitest": "5.0.0",
+    "wrangler": "4.129.0"
+  },
+  "cloudflare": {
+    "bindings": {
+      "ARTIFACTS": {
+        "description": "Select the Cloudflare Artifacts namespace containing the repository to build and heal."
+      },
+      "AI": {
+        "description": "Workers AI binding used by the Healing Agent. The model is selected in `cloudflare.ci.ts`."
+      },
+      "BACKUP_BUCKET": {
+        "description": "R2 bucket used to store workspace Snapshots between runners."
+      },
+      "BACKUP_BUCKET_NAME": {
+        "description": "Use the same name as the `BACKUP_BUCKET` R2 bucket."
+      },
+      "CLOUDFLARE_ACCOUNT_ID": {
+        "description": "Cloudflare account ID where this CI Worker runs."
+      },
+      "CLOUDFLARE_DEPLOY_ACCOUNT_ID": {
+        "description": "Cloudflare account ID where pipeline deployments are created. This can be the same as `CLOUDFLARE_ACCOUNT_ID`."
+      },
+      "CF_TOKEN": {
+        "description": "Cloudflare API token used by pipeline runners. Create one from the [API Tokens page](https://dash.cloudflare.com/profile/api-tokens)."
+      },
+      "R2_ACCESS_KEY_ID": {
+        "description": "R2 access key ID used by Sandbox to save workspace Snapshots."
+      },
+      "R2_SECRET_ACCESS_KEY": {
+        "description": "R2 secret access key used by Sandbox to save workspace Snapshots."
+      }
+    }
+  },
+  "packageManager": "bun@1.4.2"
+}

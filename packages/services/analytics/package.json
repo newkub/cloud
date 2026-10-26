@@ -18,7 +18,7 @@
 		"verify": "bun run check && bun run test"
 	},
 	"dependencies": {
-		"@wrikka/solid-ui": "workspace:*",
+		"@wrikka/solid-ui": "link:../../../../../newkub/wpackages/bun-packages/packages/lib/solid-ui/packages/solid-ui",
 		"arktype": "catalog:",
 		"drizzle-orm": "catalog:",
 		"solid-js": "catalog:"

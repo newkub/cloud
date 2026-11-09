@@ -12,7 +12,7 @@ import { getProductDetail, products } from "./src/data/products";
 
 /* Aliased to source in vite.config.ts — scan the linked source tree. */
 const solidUiPackages =
-	"D:/newkub/wpackages/bun-packages/packages/lib/solid-ui/packages/";
+	"D:/opensource/bun-packages/packages/lib/solid-ui/packages/";
 
 export default defineConfig({
 	content: {

@@ -18,8 +18,14 @@
 		"verify": "bun run check && bun run test && bun run build"
 	},
 	"dependencies": {
+		"@orpc/client": "^1.15.0",
+		"@tanstack/solid-query": "^5.102.8",
 		"@tanstack/solid-router": "catalog:",
-		"@wrikka/solid-ui": "workspace:*",
+		"@wrikka/animation": "link:../../../../newkub/wpackages/bun-packages/packages/lib/solid-ui/packages/animation",
+		"@wrikka/chart": "link:../../../../newkub/wpackages/bun-packages/packages/lib/solid-ui/packages/chart",
+		"@wrikka/hooks": "link:../../../../newkub/wpackages/bun-packages/packages/lib/solid-ui/packages/hooks",
+		"@wrikka/solid-ui": "link:../../../../newkub/wpackages/bun-packages/packages/lib/solid-ui/packages/solid-ui",
+		"@wrikka/theme": "link:../../../../newkub/wpackages/bun-packages/packages/lib/solid-ui/packages/theme",
 		"arktype": "catalog:",
 		"drizzle-orm": "catalog:",
 		"solid-js": "catalog:"

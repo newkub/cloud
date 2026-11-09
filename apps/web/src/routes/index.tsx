@@ -1,46 +1,56 @@
 import { createFileRoute } from "@tanstack/solid-router";
-import { For } from "solid-js";
-import { ProductCard } from "../components/ProductCard";
-import { isAvailable, productGroups, products } from "../data/products";
+import { createSignal, For, Show } from "solid-js";
+import { ActivityTab } from "../cloud/ActivityTab";
+import { OverviewTab } from "../cloud/OverviewTab";
+import { ServicesTab } from "../cloud/ServicesTab";
+import { CloudFrame } from "../shell/CloudFrame";
 
-export const Route = createFileRoute("/")({ component: ProductsPage });
+export const Route = createFileRoute("/")({ component: CloudApp });
 
-function ProductsPage() {
-	const liveCount = () => products.filter(isAvailable).length;
+const TABS = [
+	{ id: "overview", label: "Overview", icon: "i-mdi:view-dashboard-outline" },
+	{ id: "services", label: "Services", icon: "i-mdi:apps" },
+	{ id: "activity", label: "Activity", icon: "i-mdi:pulse" },
+] as const;
+
+type TabId = (typeof TABS)[number]["id"];
+
+function CloudApp() {
+	const [tab, setTab] = createSignal<TabId>("overview");
+
 	return (
-		<div class="mx-auto max-w-6xl px-6 py-8">
-			<header class="mb-8">
-				<h1 class="text-2xl font-semibold tracking-tight">Products</h1>
-				<p class="mt-1 text-sm text-dim">
-					Build and scale with Wrikka Cloud infrastructure.
-				</p>
-				<div class="mt-4 flex flex-wrap gap-2 text-xs text-dim">
-					<span class="rounded-full border border-edge bg-panel px-2.5 py-1">
-						{products.length} products
-					</span>
-					<span class="rounded-full border border-acc/30 bg-acc/10 px-2.5 py-1 text-acc">
-						{liveCount()} live
-					</span>
-					<span class="rounded-full border border-edge bg-panel px-2.5 py-1">
-						{productGroups.length} categories
-					</span>
-				</div>
-			</header>
-
-			<For each={productGroups}>
-				{(group) => (
-					<section class="mb-8">
-						<h2 class="mb-3 text-xs font-medium uppercase tracking-wider text-faint">
-							{group.label}
-						</h2>
-						<div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-							<For each={products.filter((p) => p.group === group.key)}>
-								{(product) => <ProductCard product={product} />}
-							</For>
-						</div>
-					</section>
-				)}
-			</For>
-		</div>
+		<CloudFrame>
+			<div class="mb-6 flex gap-1 overflow-x-auto border-b border-edge">
+				<For each={TABS}>
+					{(item) => (
+						<a
+							href={`#${item.id}`}
+							aria-current={tab() === item.id ? "page" : undefined}
+							onClick={(event) => {
+								event.preventDefault();
+								setTab(item.id);
+							}}
+							class={`-mb-px flex shrink-0 items-center gap-1.5 whitespace-nowrap border-b-2 px-3 py-2 text-sm transition-colors ${
+								tab() === item.id
+									? "border-acc font-medium text-acc"
+									: "border-transparent text-dim hover:border-edge hover:text-fg"
+							}`}
+						>
+							<span class={`${item.icon} text-base`} />
+							{item.label}
+						</a>
+					)}
+				</For>
+			</div>
+			<Show when={tab() === "overview"}>
+				<OverviewTab />
+			</Show>
+			<Show when={tab() === "services"}>
+				<ServicesTab />
+			</Show>
+			<Show when={tab() === "activity"}>
+				<ActivityTab />
+			</Show>
+		</CloudFrame>
 	);
 }

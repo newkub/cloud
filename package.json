@@ -47,7 +47,9 @@
 		"typecheck": "bun --filter @wrikka/cloud-web typecheck && bun --filter @wrikka/cloud-ci typecheck",
 		"typecheck:services": "bun --filter @wrikka/analytics typecheck && bun --filter @wrikka/notification typecheck",
 		"check": "bun run typecheck",
-		"test": "bun --filter @wrikka/cloud-web test"
+		"test": "bun --filter @wrikka/cloud-web test",
+		"vendor:report": "bun scripts/vendor-solid-ui.ts",
+		"vendor:check": "bun scripts/vendor-solid-ui.ts --strict"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "catalog:",

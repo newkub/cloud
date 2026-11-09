@@ -1,0 +1,14 @@
+id: server-only-deps-not-in-client
+language: TypeScript
+severity: warning
+message: 'Server-only dependency imported in client/UI path - keep it behind server functions / server entry.'
+rule:
+  pattern: 'import $$$X from "$PKG"'
+constraints:
+  PKG:
+    regex: '^(agents|ai|@orpc/server|@cloudflare/sandbox|@cloudflare/think|hono)$'
+files:
+  - 'src/components/**/*.tsx'
+  - 'src/routes/**/*.tsx'
+  - 'src/composables/**/*.ts'
+  - 'src/hooks/**/*.ts'

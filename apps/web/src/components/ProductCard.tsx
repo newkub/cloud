@@ -1,15 +1,16 @@
 import { Link } from "@tanstack/solid-router";
+import { Show } from "solid-js";
 import { isAvailable, type Product } from "../data/products";
 import { StatusBadge } from "./StatusBadge";
 
+const CARD_CLASS =
+	"group flex flex-col gap-4 rounded-xl border border-edge bg-panel p-4 hover:border-acc/40 hover:bg-raise";
+
 export function ProductCard(props: { product: Product }) {
 	const live = () => isAvailable(props.product);
-	return (
-		<Link
-			to="/products/$slug"
-			params={{ slug: props.product.key }}
-			class="group flex flex-col gap-4 rounded-xl border border-edge bg-panel p-4 hover:border-acc/40 hover:bg-raise"
-		>
+
+	const body = () => (
+		<>
 			<div class="flex items-start justify-between">
 				<span
 					class={`flex h-9 w-9 items-center justify-center rounded-lg border border-edge bg-ink text-xl ${
@@ -26,6 +27,25 @@ export function ProductCard(props: { product: Product }) {
 					{props.product.description}
 				</p>
 			</div>
-		</Link>
+		</>
+	);
+
+	return (
+		<Show
+			when={props.product.key === "ci"}
+			fallback={
+				<Link
+					to="/products/$slug"
+					params={{ slug: props.product.key }}
+					class={CARD_CLASS}
+				>
+					{body()}
+				</Link>
+			}
+		>
+			<Link to="/ci" class={CARD_CLASS}>
+				{body()}
+			</Link>
+		</Show>
 	);
 }

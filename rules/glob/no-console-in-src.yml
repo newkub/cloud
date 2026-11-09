@@ -1,0 +1,9 @@
+id: no-console-in-src
+language: TypeScript
+severity: warning
+message: 'console.log in source — use the project logger or remove.'
+rule:
+  pattern: 'console.log($$$ARGS)'
+files:
+  - 'src/**/*.ts'
+  - 'src/**/*.tsx'

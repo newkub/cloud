@@ -1,5 +1,7 @@
+import { presetSolidUI } from "@wrikka/theme/preset";
 import {
 	defineConfig,
+	type Preset,
 	presetIcons,
 	presetWind4,
 	transformerDirectives,
@@ -8,9 +10,16 @@ import {
 
 import { getProductDetail, products } from "./src/data/products";
 
+/* Aliased to source in vite.config.ts — scan the linked source tree. */
+const solidUiPackages =
+	"D:/newkub/wpackages/bun-packages/packages/lib/solid-ui/packages/";
+
 export default defineConfig({
 	content: {
-		filesystem: ["./src/**/*.{ts,tsx}"],
+		filesystem: [
+			"./src/**/*.{ts,tsx}",
+			`${solidUiPackages}{solid-ui,animation,chart,hooks}/src/**/*.{ts,tsx}`,
+		],
 	},
 	safelist: products.flatMap((p) => {
 		const detail = getProductDetail(p);
@@ -22,6 +31,8 @@ export default defineConfig({
 	}),
 	presets: [
 		presetWind4(),
+		/* The linked package resolves its own @unocss/core copy — the preset is plain data, so the cast is safe. */
+		presetSolidUI({ mode: "dark", color: "green" }) as unknown as Preset,
 		presetIcons({
 			collections: {
 				mdi: () =>
@@ -30,6 +41,11 @@ export default defineConfig({
 		}),
 	],
 	transformers: [transformerVariantGroup(), transformerDirectives()],
+	shortcuts: {
+		card: "bg-panel border border-edge rounded-xl",
+		"input-chip":
+			"px-3 py-1.5 rounded-lg text-sm border border-edge bg-raise hover:bg-raise transition-colors",
+	},
 	theme: {
 		colors: {
 			/* CSS vars as rgb() — wind4 applies opacity via color-mix */
@@ -43,6 +59,20 @@ export default defineConfig({
 			ok: "rgb(var(--ok))",
 			err: "rgb(var(--err))",
 			acc: "rgb(var(--acc))",
+			brand: {
+				DEFAULT: "rgb(var(--acc))",
+				dim: "rgb(var(--acc))",
+			},
+			surface: {
+				DEFAULT: "rgb(var(--panel))",
+				foreground: "hsl(var(--color-surface-foreground))",
+				elevated: "hsl(var(--color-surface-elevated))",
+				0: "rgb(var(--ink))",
+				1: "rgb(var(--panel))",
+				2: "rgb(var(--raise))",
+				3: "rgb(var(--raise))",
+			},
+			line: "rgb(var(--edge))",
 		},
 		animation: {
 			keyframes: {

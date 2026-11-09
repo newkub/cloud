@@ -1,0 +1,9 @@
+ruleDirs:
+  - rules/dependencies
+  - rules/architecture
+  - rules/glob
+languageAliases:
+  ts: TypeScript
+  tsx: TypeScript
+  js: JavaScript
+  jsx: JavaScript

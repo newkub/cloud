@@ -6,10 +6,22 @@ import viteSolid from "vite-plugin-solid";
 
 export default defineConfig({
 	resolve: {
-		alias: {
-			"#analytics": fileURLToPath(
-				new URL("../../packages/services/analytics", import.meta.url),
-			),
+		dedupe: ["solid-js", "@tanstack/solid-router", "@tanstack/solid-query"],
+		alias: [
+			{
+				find: "#analytics",
+				replacement: fileURLToPath(
+					new URL("../../packages/services/analytics", import.meta.url),
+				),
+			},
+		],
+	},
+	server: {
+		proxy: {
+			"/rpc": {
+				target: "http://127.0.0.1:8787",
+				changeOrigin: true,
+			},
 		},
 	},
 	plugins: [

@@ -1,0 +1,13 @@
+id: no-focused-tests
+language: TypeScript
+severity: warning
+message: 'Focused test (.only) committed — remove before merge.'
+rule:
+  any:
+    - pattern: 'it.only($$$ARGS)'
+    - pattern: 'describe.only($$$ARGS)'
+    - pattern: 'test.only($$$ARGS)'
+files:
+  - '**/*.test.ts'
+  - '**/*.test.tsx'
+  - '**/*.spec.ts'

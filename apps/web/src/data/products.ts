@@ -29,7 +29,10 @@ export interface ProductAction {
 	label: string;
 	/** Iconify mdi class — safelisted via uno.config.ts */
 	icon: string;
-	href: string;
+	/** External link, opened in a new tab */
+	href?: string;
+	/** Internal console route — navigates inside the app */
+	route?: "/ci" | "/ci/runs" | "/ci/heals" | "/ci/logs" | "/ci/settings";
 	/** Rendered as the primary accented action */
 	primary?: boolean;
 	/** Inert action (coming-soon products) */
@@ -205,6 +208,15 @@ export const products: Product[] = [
 		group: "insights",
 	},
 	{
+		key: "ci",
+		name: "CI Pipeline",
+		description:
+			"Self-healing continuous integration — builds, tests and repairs itself.",
+		icon: "i-mdi:pipe",
+		status: "available",
+		group: "delivery",
+	},
+	{
 		key: "website",
 		name: "Website",
 		description: "Deploy static sites and full-stack frameworks.",
@@ -369,6 +381,52 @@ const detailOverrides: Record<string, ProductDetail> = {
 				icon: "i-mdi:check-circle-outline",
 				text: "Health check passed — service ok",
 				time: "3h ago",
+			},
+		],
+	},
+	ci: {
+		overview:
+			"CI Pipeline is Wrikka Cloud's self-healing continuous integration service. Pushes to the watched repository run install, lint, test, typecheck and build inside a Cloudflare Sandbox. When a step fails, the healing agent opens a workspace, repairs the code, re-verifies every failed command and pushes a fix branch with a pull request.",
+		metrics: [
+			{ label: "Runs (7d)", value: "1,284", delta: "+12%", up: true },
+			{ label: "Success rate", value: "94.2%", delta: "+1.8%", up: true },
+			{ label: "Heal rate", value: "78.5%", delta: "+4.1%", up: true },
+			{ label: "Median duration", value: "11m 24s", delta: "-42s", up: true },
+		],
+		actions: [
+			{
+				label: "Open dashboard",
+				icon: "i-mdi:view-dashboard-outline",
+				route: "/ci",
+				primary: true,
+			},
+			{ label: "View runs", icon: "i-mdi:pipe", route: "/ci/runs" },
+			{
+				label: "Configuration",
+				icon: "i-mdi:cog-outline",
+				route: "/ci/settings",
+			},
+		],
+		activity: [
+			{
+				icon: "i-mdi:auto-fix",
+				text: "Heal attempt pushed ci-autofix/… — PR #128 opened",
+				time: "6m ago",
+			},
+			{
+				icon: "i-mdi:check-circle-outline",
+				text: "Run succeeded on main (f7e8d9c)",
+				time: "2h ago",
+			},
+			{
+				icon: "i-mdi:bandage",
+				text: "Healing agent started on failing typecheck",
+				time: "5h ago",
+			},
+			{
+				icon: "i-mdi:source-branch",
+				text: "New workflow run triggered by push",
+				time: "1d ago",
 			},
 		],
 	},

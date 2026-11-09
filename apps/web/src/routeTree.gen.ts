@@ -10,11 +10,79 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CiRouteImport } from './routes/ci'
+import { Route as DocsRouteImport } from './routes/docs'
+import { Route as LogsRouteImport } from './routes/logs'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as CiIndexRouteImport } from './routes/ci.index'
+import { Route as CiConfigRouteImport } from './routes/ci.config'
+import { Route as CiDocsRouteImport } from './routes/ci.docs'
+import { Route as CiLogsRouteImport } from './routes/ci.logs'
+import { Route as CiSettingsRouteImport } from './routes/ci.settings'
+import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as CiHealsIndexRouteImport } from './routes/ci.heals.index'
+import { Route as CiHealsRunIdRouteImport } from './routes/ci.heals.$runId'
+import { Route as CiRunsIndexRouteImport } from './routes/ci.runs.index'
+import { Route as CiRunsRunIdRouteImport } from './routes/ci.runs.$runId'
+import { Route as ProductsSlugIndexRouteImport } from './routes/products.$slug.index'
+import { Route as ProductsSlugDocsRouteImport } from './routes/products.$slug.docs'
+import { Route as ProductsSlugLogsRouteImport } from './routes/products.$slug.logs'
+import { Route as ProductsSlugSettingsRouteImport } from './routes/products.$slug.settings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CiRoute = CiRouteImport.update({
+  id: '/ci',
+  path: '/ci',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DocsRoute = DocsRouteImport.update({
+  id: '/docs',
+  path: '/docs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LogsRoute = LogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CiIndexRoute = CiIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => CiRoute,
+} as any)
+const CiConfigRoute = CiConfigRouteImport.update({
+  id: '/config',
+  path: '/config',
+  getParentRoute: () => CiRoute,
+} as any)
+const CiDocsRoute = CiDocsRouteImport.update({
+  id: '/docs',
+  path: '/docs',
+  getParentRoute: () => CiRoute,
+} as any)
+const CiLogsRoute = CiLogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => CiRoute,
+} as any)
+const CiSettingsRoute = CiSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => CiRoute,
+} as any)
+const ProductsIndexRoute = ProductsIndexRouteImport.update({
+  id: '/products/',
+  path: '/products/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProductsSlugRoute = ProductsSlugRouteImport.update({
@@ -22,31 +90,187 @@ const ProductsSlugRoute = ProductsSlugRouteImport.update({
   path: '/products/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CiHealsIndexRoute = CiHealsIndexRouteImport.update({
+  id: '/heals/',
+  path: '/heals/',
+  getParentRoute: () => CiRoute,
+} as any)
+const CiHealsRunIdRoute = CiHealsRunIdRouteImport.update({
+  id: '/heals/$runId',
+  path: '/heals/$runId',
+  getParentRoute: () => CiRoute,
+} as any)
+const CiRunsIndexRoute = CiRunsIndexRouteImport.update({
+  id: '/runs/',
+  path: '/runs/',
+  getParentRoute: () => CiRoute,
+} as any)
+const CiRunsRunIdRoute = CiRunsRunIdRouteImport.update({
+  id: '/runs/$runId',
+  path: '/runs/$runId',
+  getParentRoute: () => CiRoute,
+} as any)
+const ProductsSlugIndexRoute = ProductsSlugIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProductsSlugRoute,
+} as any)
+const ProductsSlugDocsRoute = ProductsSlugDocsRouteImport.update({
+  id: '/docs',
+  path: '/docs',
+  getParentRoute: () => ProductsSlugRoute,
+} as any)
+const ProductsSlugLogsRoute = ProductsSlugLogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => ProductsSlugRoute,
+} as any)
+const ProductsSlugSettingsRoute = ProductsSlugSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => ProductsSlugRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/products/$slug': typeof ProductsSlugRoute
+  '/ci': typeof CiRouteWithChildren
+  '/docs': typeof DocsRoute
+  '/logs': typeof LogsRoute
+  '/settings': typeof SettingsRoute
+  '/ci/config': typeof CiConfigRoute
+  '/ci/docs': typeof CiDocsRoute
+  '/ci/logs': typeof CiLogsRoute
+  '/ci/settings': typeof CiSettingsRoute
+  '/products/$slug': typeof ProductsSlugRouteWithChildren
+  '/ci/': typeof CiIndexRoute
+  '/products/': typeof ProductsIndexRoute
+  '/ci/heals/$runId': typeof CiHealsRunIdRoute
+  '/ci/runs/$runId': typeof CiRunsRunIdRoute
+  '/products/$slug/docs': typeof ProductsSlugDocsRoute
+  '/products/$slug/logs': typeof ProductsSlugLogsRoute
+  '/products/$slug/settings': typeof ProductsSlugSettingsRoute
+  '/ci/heals/': typeof CiHealsIndexRoute
+  '/ci/runs/': typeof CiRunsIndexRoute
+  '/products/$slug/': typeof ProductsSlugIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/products/$slug': typeof ProductsSlugRoute
+  '/docs': typeof DocsRoute
+  '/logs': typeof LogsRoute
+  '/settings': typeof SettingsRoute
+  '/ci/config': typeof CiConfigRoute
+  '/ci/docs': typeof CiDocsRoute
+  '/ci/logs': typeof CiLogsRoute
+  '/ci/settings': typeof CiSettingsRoute
+  '/ci': typeof CiIndexRoute
+  '/products': typeof ProductsIndexRoute
+  '/ci/heals/$runId': typeof CiHealsRunIdRoute
+  '/ci/runs/$runId': typeof CiRunsRunIdRoute
+  '/products/$slug/docs': typeof ProductsSlugDocsRoute
+  '/products/$slug/logs': typeof ProductsSlugLogsRoute
+  '/products/$slug/settings': typeof ProductsSlugSettingsRoute
+  '/ci/heals': typeof CiHealsIndexRoute
+  '/ci/runs': typeof CiRunsIndexRoute
+  '/products/$slug': typeof ProductsSlugIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/products/$slug': typeof ProductsSlugRoute
+  '/ci': typeof CiRouteWithChildren
+  '/docs': typeof DocsRoute
+  '/logs': typeof LogsRoute
+  '/settings': typeof SettingsRoute
+  '/ci/config': typeof CiConfigRoute
+  '/ci/docs': typeof CiDocsRoute
+  '/ci/logs': typeof CiLogsRoute
+  '/ci/settings': typeof CiSettingsRoute
+  '/products/$slug': typeof ProductsSlugRouteWithChildren
+  '/ci/': typeof CiIndexRoute
+  '/products/': typeof ProductsIndexRoute
+  '/ci/heals/$runId': typeof CiHealsRunIdRoute
+  '/ci/runs/$runId': typeof CiRunsRunIdRoute
+  '/products/$slug/docs': typeof ProductsSlugDocsRoute
+  '/products/$slug/logs': typeof ProductsSlugLogsRoute
+  '/products/$slug/settings': typeof ProductsSlugSettingsRoute
+  '/ci/heals/': typeof CiHealsIndexRoute
+  '/ci/runs/': typeof CiRunsIndexRoute
+  '/products/$slug/': typeof ProductsSlugIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/products/$slug'
+  fullPaths:
+    | '/'
+    | '/ci'
+    | '/docs'
+    | '/logs'
+    | '/settings'
+    | '/ci/config'
+    | '/ci/docs'
+    | '/ci/logs'
+    | '/ci/settings'
+    | '/products/$slug'
+    | '/ci/'
+    | '/products/'
+    | '/ci/heals/$runId'
+    | '/ci/runs/$runId'
+    | '/products/$slug/docs'
+    | '/products/$slug/logs'
+    | '/products/$slug/settings'
+    | '/ci/heals/'
+    | '/ci/runs/'
+    | '/products/$slug/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/products/$slug'
-  id: '__root__' | '/' | '/products/$slug'
+  to:
+    | '/'
+    | '/docs'
+    | '/logs'
+    | '/settings'
+    | '/ci/config'
+    | '/ci/docs'
+    | '/ci/logs'
+    | '/ci/settings'
+    | '/ci'
+    | '/products'
+    | '/ci/heals/$runId'
+    | '/ci/runs/$runId'
+    | '/products/$slug/docs'
+    | '/products/$slug/logs'
+    | '/products/$slug/settings'
+    | '/ci/heals'
+    | '/ci/runs'
+    | '/products/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/ci'
+    | '/docs'
+    | '/logs'
+    | '/settings'
+    | '/ci/config'
+    | '/ci/docs'
+    | '/ci/logs'
+    | '/ci/settings'
+    | '/products/$slug'
+    | '/ci/'
+    | '/products/'
+    | '/ci/heals/$runId'
+    | '/ci/runs/$runId'
+    | '/products/$slug/docs'
+    | '/products/$slug/logs'
+    | '/products/$slug/settings'
+    | '/ci/heals/'
+    | '/ci/runs/'
+    | '/products/$slug/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ProductsSlugRoute: typeof ProductsSlugRoute
+  CiRoute: typeof CiRouteWithChildren
+  DocsRoute: typeof DocsRoute
+  LogsRoute: typeof LogsRoute
+  SettingsRoute: typeof SettingsRoute
+  ProductsSlugRoute: typeof ProductsSlugRouteWithChildren
+  ProductsIndexRoute: typeof ProductsIndexRoute
 }
 
 declare module '@tanstack/solid-router' {
@@ -58,6 +282,76 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ci': {
+      id: '/ci'
+      path: '/ci'
+      fullPath: '/ci'
+      preLoaderRoute: typeof CiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/docs': {
+      id: '/docs'
+      path: '/docs'
+      fullPath: '/docs'
+      preLoaderRoute: typeof DocsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/logs': {
+      id: '/logs'
+      path: '/logs'
+      fullPath: '/logs'
+      preLoaderRoute: typeof LogsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ci/': {
+      id: '/ci/'
+      path: '/'
+      fullPath: '/ci/'
+      preLoaderRoute: typeof CiIndexRouteImport
+      parentRoute: typeof CiRoute
+    }
+    '/ci/config': {
+      id: '/ci/config'
+      path: '/config'
+      fullPath: '/ci/config'
+      preLoaderRoute: typeof CiConfigRouteImport
+      parentRoute: typeof CiRoute
+    }
+    '/ci/docs': {
+      id: '/ci/docs'
+      path: '/docs'
+      fullPath: '/ci/docs'
+      preLoaderRoute: typeof CiDocsRouteImport
+      parentRoute: typeof CiRoute
+    }
+    '/ci/logs': {
+      id: '/ci/logs'
+      path: '/logs'
+      fullPath: '/ci/logs'
+      preLoaderRoute: typeof CiLogsRouteImport
+      parentRoute: typeof CiRoute
+    }
+    '/ci/settings': {
+      id: '/ci/settings'
+      path: '/settings'
+      fullPath: '/ci/settings'
+      preLoaderRoute: typeof CiSettingsRouteImport
+      parentRoute: typeof CiRoute
+    }
+    '/products/': {
+      id: '/products/'
+      path: '/products'
+      fullPath: '/products/'
+      preLoaderRoute: typeof ProductsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/$slug': {
       id: '/products/$slug'
       path: '/products/$slug'
@@ -65,12 +359,117 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof ProductsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ci/heals/': {
+      id: '/ci/heals/'
+      path: '/heals'
+      fullPath: '/ci/heals/'
+      preLoaderRoute: typeof CiHealsIndexRouteImport
+      parentRoute: typeof CiRoute
+    }
+    '/ci/heals/$runId': {
+      id: '/ci/heals/$runId'
+      path: '/heals/$runId'
+      fullPath: '/ci/heals/$runId'
+      preLoaderRoute: typeof CiHealsRunIdRouteImport
+      parentRoute: typeof CiRoute
+    }
+    '/ci/runs/': {
+      id: '/ci/runs/'
+      path: '/runs'
+      fullPath: '/ci/runs/'
+      preLoaderRoute: typeof CiRunsIndexRouteImport
+      parentRoute: typeof CiRoute
+    }
+    '/ci/runs/$runId': {
+      id: '/ci/runs/$runId'
+      path: '/runs/$runId'
+      fullPath: '/ci/runs/$runId'
+      preLoaderRoute: typeof CiRunsRunIdRouteImport
+      parentRoute: typeof CiRoute
+    }
+    '/products/$slug/': {
+      id: '/products/$slug/'
+      path: '/'
+      fullPath: '/products/$slug/'
+      preLoaderRoute: typeof ProductsSlugIndexRouteImport
+      parentRoute: typeof ProductsSlugRoute
+    }
+    '/products/$slug/docs': {
+      id: '/products/$slug/docs'
+      path: '/docs'
+      fullPath: '/products/$slug/docs'
+      preLoaderRoute: typeof ProductsSlugDocsRouteImport
+      parentRoute: typeof ProductsSlugRoute
+    }
+    '/products/$slug/logs': {
+      id: '/products/$slug/logs'
+      path: '/logs'
+      fullPath: '/products/$slug/logs'
+      preLoaderRoute: typeof ProductsSlugLogsRouteImport
+      parentRoute: typeof ProductsSlugRoute
+    }
+    '/products/$slug/settings': {
+      id: '/products/$slug/settings'
+      path: '/settings'
+      fullPath: '/products/$slug/settings'
+      preLoaderRoute: typeof ProductsSlugSettingsRouteImport
+      parentRoute: typeof ProductsSlugRoute
+    }
   }
 }
 
+interface CiRouteChildren {
+  CiConfigRoute: typeof CiConfigRoute
+  CiDocsRoute: typeof CiDocsRoute
+  CiLogsRoute: typeof CiLogsRoute
+  CiSettingsRoute: typeof CiSettingsRoute
+  CiIndexRoute: typeof CiIndexRoute
+  CiHealsRunIdRoute: typeof CiHealsRunIdRoute
+  CiRunsRunIdRoute: typeof CiRunsRunIdRoute
+  CiHealsIndexRoute: typeof CiHealsIndexRoute
+  CiRunsIndexRoute: typeof CiRunsIndexRoute
+}
+
+const CiRouteChildren: CiRouteChildren = {
+  CiConfigRoute: CiConfigRoute,
+  CiDocsRoute: CiDocsRoute,
+  CiLogsRoute: CiLogsRoute,
+  CiSettingsRoute: CiSettingsRoute,
+  CiIndexRoute: CiIndexRoute,
+  CiHealsRunIdRoute: CiHealsRunIdRoute,
+  CiRunsRunIdRoute: CiRunsRunIdRoute,
+  CiHealsIndexRoute: CiHealsIndexRoute,
+  CiRunsIndexRoute: CiRunsIndexRoute,
+}
+
+const CiRouteWithChildren = CiRoute._addFileChildren(CiRouteChildren)
+
+interface ProductsSlugRouteChildren {
+  ProductsSlugDocsRoute: typeof ProductsSlugDocsRoute
+  ProductsSlugLogsRoute: typeof ProductsSlugLogsRoute
+  ProductsSlugSettingsRoute: typeof ProductsSlugSettingsRoute
+  ProductsSlugIndexRoute: typeof ProductsSlugIndexRoute
+}
+
+const ProductsSlugRouteChildren: ProductsSlugRouteChildren = {
+  ProductsSlugDocsRoute: ProductsSlugDocsRoute,
+  ProductsSlugLogsRoute: ProductsSlugLogsRoute,
+  ProductsSlugSettingsRoute: ProductsSlugSettingsRoute,
+  ProductsSlugIndexRoute: ProductsSlugIndexRoute,
+}
+
+const ProductsSlugRouteWithChildren = ProductsSlugRoute._addFileChildren(
+  ProductsSlugRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ProductsSlugRoute: ProductsSlugRoute,
+  CiRoute: CiRouteWithChildren,
+  DocsRoute: DocsRoute,
+  LogsRoute: LogsRoute,
+  SettingsRoute: SettingsRoute,
+  ProductsSlugRoute: ProductsSlugRouteWithChildren,
+  ProductsIndexRoute: ProductsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

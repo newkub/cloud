@@ -1,0 +1,14 @@
+id: no-server-import-in-client
+language: TypeScript
+severity: warning
+message: 'Client-side code must not import server modules (server.ts, db/, server/) — use server functions.'
+rule:
+  pattern: 'import $$$X from "$SRC"'
+constraints:
+  SRC:
+    regex: '(\.\./)*(db|server)(/|\.)'
+files:
+  - 'src/components/**/*.tsx'
+  - 'src/routes/**/*.tsx'
+  - 'src/composables/**/*.ts'
+  - 'src/hooks/**/*.ts'

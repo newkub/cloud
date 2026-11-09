@@ -13,6 +13,19 @@
 	--acc: 52 211 153;
 }
 
+[data-theme="light"] {
+	color-scheme: light;
+	--ink: 248 250 252;
+	--panel: 255 255 255;
+	--raise: 241 245 249;
+	--edge: 226 232 240;
+	--fg: 15 23 42;
+	--dim: 71 85 105;
+	--faint: 100 116 139;
+	--ok: 16 185 129;
+	--err: 225 29 72;
+}
+
 body {
 	background: rgb(var(--ink));
 	overflow-x: clip;
@@ -22,6 +35,15 @@ body * {
 	transition-property: background-color, border-color, color, fill, stroke;
 	transition-duration: 0.2s;
 	transition-timing-function: ease;
+}
+
+:root[data-motion="reduced"] *,
+:root[data-motion="reduced"] *::before,
+:root[data-motion="reduced"] *::after {
+	animation-duration: 0.01ms !important;
+	animation-iteration-count: 1 !important;
+	transition-duration: 0.01ms !important;
+	scroll-behavior: auto !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
